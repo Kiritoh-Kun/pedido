@@ -9,7 +9,6 @@ import java.io.Serializable;
 @Entity
 public class entityCategoria implements Serializable {
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue
     @Column(name ="id")
@@ -17,33 +16,4 @@ public class entityCategoria implements Serializable {
 
     @Column(name ="name")
     private String name;
-
-    @Column(name ="lastname")
-    private String lastName;
-
-    @Column(name ="address")
-    private String address;
-
-    @Column(name ="age")
-    private String age;
-
-    public entityCategoria(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
