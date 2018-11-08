@@ -24,6 +24,9 @@ public class entityCategoria implements Serializable {
     @Column(name ="address")
     private String address;
 
+    @Column(name ="age")
+    private String age;
+
     public entityCategoria(String name) {
         this.name = name;
     }
