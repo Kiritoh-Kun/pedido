@@ -21,6 +21,9 @@ public class entityCategoria implements Serializable {
     @Column(name ="lastname")
     private String lastName;
 
+    @Column(name ="address")
+    private String address;
+
     public entityCategoria(String name) {
         this.name = name;
     }
