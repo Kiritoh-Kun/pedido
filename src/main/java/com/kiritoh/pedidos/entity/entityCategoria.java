@@ -1,21 +1,19 @@
 package com.kiritoh.pedidos.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 public class entityCategoria implements Serializable {
-    private static final long serialVersionUID = 1L;
+    //private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="id")
     private int id;
 
     @Column(name ="name")
     private String name;
+
 
     public entityCategoria(){}
 
@@ -38,5 +36,4 @@ public class entityCategoria implements Serializable {
     public entityCategoria(String name) {
         this.name = name;
     }
-
 }
