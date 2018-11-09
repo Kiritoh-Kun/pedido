@@ -8,4 +8,5 @@ import java.io.Serializable;
 
 @Repository("repositorioPedido")
 public interface repositorio extends JpaRepository<entityCategoria, Serializable> {
+    public abstract entityCategoria findById(int id);
 }

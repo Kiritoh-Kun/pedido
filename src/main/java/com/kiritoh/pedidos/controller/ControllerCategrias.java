@@ -29,12 +29,17 @@ public class ControllerCategrias {
     servicePedido sp;
 
     @PostMapping("/addCategoria")
-    public modelCategoria add(@RequestBody entityCategoria categoria){
+    public modelCategoria add(@RequestBody entityCategoria categoria) {
         return sp.addCategoria(categoria);
     }
 
     @GetMapping("/showCategoria")
-    public List<modelCategoria> showCategoria(){
+    public List<modelCategoria> showCategoria() {
         return sp.showCategoria();
+    }
+
+    @GetMapping("/findCategoriaById/{x}")
+    public modelCategoria findCategoriaById(@PathVariable int x){
+        return sp.FindCategoriaById(x);
     }
 }
