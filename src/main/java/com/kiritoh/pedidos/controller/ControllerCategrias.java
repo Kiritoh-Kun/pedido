@@ -3,6 +3,7 @@ package com.kiritoh.pedidos.controller;
 import com.kiritoh.pedidos.entity.entityCategoria;
 import com.kiritoh.pedidos.model.modelCategoria;
 import com.kiritoh.pedidos.servicios.servicePedido;
+import com.sun.corba.se.spi.ior.ObjectKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,13 @@ public class ControllerCategrias {
     }
 
     @GetMapping("/findCategoriaById/{x}")
-    public modelCategoria findCategoriaById(@PathVariable int x){
-        return sp.FindCategoriaById(x);
+    public Object findCategoriaById(@PathVariable int x){
+        modelCategoria categoriaRespuesta;
+        categoriaRespuesta=sp.FindCategoriaById(x);
+        if(categoriaRespuesta==null)
+            return "Esta categoria no exite";
+        else{
+            return categoriaRespuesta;
+        }
     }
 }
