@@ -2,6 +2,9 @@ package com.kiritoh.pedidos.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class entityCategoria implements Serializable {
@@ -13,6 +16,9 @@ public class entityCategoria implements Serializable {
 
     @Column(name ="name")
     private String name;
+
+    @ManyToMany(mappedBy = "categorias")
+    private List<entityProducto> productos= new ArrayList<>();
 
 
     public entityCategoria(){}
@@ -35,5 +41,26 @@ public class entityCategoria implements Serializable {
 
     public entityCategoria(String name) {
         this.name = name;
+    }
+
+    public List<entityProducto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<entityProducto> productos) {
+        this.productos = productos;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof entityCategoria)) return false;
+        entityCategoria that = (entityCategoria) o;
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
