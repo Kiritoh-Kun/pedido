@@ -2,6 +2,7 @@ package com.kiritoh.pedidos.controller;
 
 import com.kiritoh.pedidos.entity.entityCategoria;
 import com.kiritoh.pedidos.model.modelCategoria;
+import com.kiritoh.pedidos.model.modelProductos;
 import com.kiritoh.pedidos.servicios.servicePedido;
 import com.sun.corba.se.spi.ior.ObjectKey;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,10 @@ public class ControllerCategrias {
     @Qualifier("serviciosPedido")
     servicePedido sp;
 
-    @PostMapping("/addCategoria")
+   /* @PostMapping("/addCategoria")
     public modelCategoria add(@RequestBody entityCategoria categoria) {
         return sp.addCategoria(categoria);
-    }
+    }*/
 
     @GetMapping("/showCategoria")
     public List<modelCategoria> showCategoria() {
@@ -43,10 +44,13 @@ public class ControllerCategrias {
     public Object findCategoriaById(@PathVariable int x){
         modelCategoria categoriaRespuesta;
         categoriaRespuesta=sp.FindCategoriaById(x);
-        if(categoriaRespuesta==null)
-            return "Esta categoria no exite";
+        /*if(categoriaRespuesta==null)
+            return "esta categoria no existe";
         else{
-            return categoriaRespuesta;
-        }
+            return  categoriaRespuesta;
+            /*List<modelProductos> lista=categoriaRespuesta.getListaProductos();
+            return lista;
+        }*/
+        return  categoriaRespuesta;
     }
 }

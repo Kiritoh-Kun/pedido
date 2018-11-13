@@ -1,5 +1,7 @@
 package com.kiritoh.pedidos.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ public class entityCategoria implements Serializable {
     @Column(name ="name")
     private String name;
 
+    @JsonManagedReference
     @ManyToMany(mappedBy = "categorias")
     private List<entityProducto> productos= new ArrayList<>();
 
