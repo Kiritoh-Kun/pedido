@@ -1,18 +1,13 @@
 package com.kiritoh.pedidos.servicios;
 
 import com.kiritoh.pedidos.converter.converter;
-import com.kiritoh.pedidos.entity.entityCategoria;
-import com.kiritoh.pedidos.entity.entityCiudades;
-import com.kiritoh.pedidos.entity.entityEstado;
-import com.kiritoh.pedidos.entity.entityProducto;
+import com.kiritoh.pedidos.entity.*;
+import com.kiritoh.pedidos.enums.TipoCliente;
 import com.kiritoh.pedidos.exceptions.ObjetoNoEncontrado;
 import com.kiritoh.pedidos.model.modelCategoria;
 import com.kiritoh.pedidos.model.modelProductos;
-import com.kiritoh.pedidos.repositorio.repositorio;
-import com.kiritoh.pedidos.repositorio.repositorioCiudades;
+import com.kiritoh.pedidos.repositorio.*;
 
-import com.kiritoh.pedidos.repositorio.repositorioEstado;
-import com.kiritoh.pedidos.repositorio.repositoryProducto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -44,6 +39,14 @@ public class servicePedido implements CommandLineRunner {
     @Autowired
     @Qualifier("repositorioCiudad")
     repositorioCiudades rciu;
+
+    @Autowired
+    @Qualifier("repositorioCliente")
+    repositorioCliente rpc;
+
+    @Autowired
+    @Qualifier("repositorioDirecciones")
+    repositorioDirecciones rpd;
 
     /*public modelCategoria addCategoria(entityCategoria categoria) {
         return new modelCategoria(rc.save(categoria));
@@ -82,7 +85,7 @@ public class servicePedido implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         //agregar al inicio
-        /*entityCategoria cat1=new entityCategoria("informatica");
+        entityCategoria cat1=new entityCategoria("informatica");
         entityCategoria cat2=new entityCategoria("escritorio");
         entityProducto p1 = new entityProducto("cumpador",2000);
         entityProducto p2 = new entityProducto("impresora",800);
@@ -93,7 +96,7 @@ public class servicePedido implements CommandLineRunner {
         p2.getCategorias().addAll(Arrays.asList(cat1,cat2));
         p3.getCategorias().addAll(Arrays.asList(cat1));
         rc.saveAll(Arrays.asList(cat1,cat2));
-        rp.saveAll(Arrays.asList(p1,p2,p3));*/
+        rp.saveAll(Arrays.asList(p1,p2,p3));
 
         entityEstado est1 = new entityEstado( "Minas Gerais");
         entityEstado est2 = new entityEstado( "San Pablo");
@@ -107,6 +110,14 @@ public class servicePedido implements CommandLineRunner {
 
         resta.saveAll(Arrays.asList(est1,est2));
         rciu.saveAll(Arrays.asList(c1,c2,c3));
+
+        entityCliente cli1=new entityCliente ("Maira Silva","maira@gmail.com","36378912377", TipoCliente.PERSONAFISICA);
+        cli1.getTelefonos().addAll(Arrays.asList("27363323","93838393"));
+        entityDirecciones e1=new entityDirecciones("Rua Flores", 300,"Apto. 203","Jardim","38220834",cli1, c1);
+        entityDirecciones e2=new entityDirecciones("Avenida Matos", 105,"Sala 800","Centro","38777012",cli1, c2);
+        cli1.getDirecciones().addAll(Arrays.asList(e1,e2));
+        rpc.save(cli1);
+        rpd.saveAll(Arrays.asList(e1,e2));
 
     }
 }
