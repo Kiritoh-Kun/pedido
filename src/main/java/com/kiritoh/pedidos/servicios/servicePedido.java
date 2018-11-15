@@ -3,8 +3,10 @@ package com.kiritoh.pedidos.servicios;
 import com.kiritoh.pedidos.converter.converter;
 import com.kiritoh.pedidos.entity.*;
 import com.kiritoh.pedidos.enums.TipoCliente;
+import com.kiritoh.pedidos.exceptions.ClienteNoEncontrado;
 import com.kiritoh.pedidos.exceptions.ObjetoNoEncontrado;
 import com.kiritoh.pedidos.model.modelCategoria;
+import com.kiritoh.pedidos.model.modelCliente;
 import com.kiritoh.pedidos.model.modelProductos;
 import com.kiritoh.pedidos.repositorio.*;
 
@@ -79,6 +81,15 @@ public class servicePedido implements CommandLineRunner {
                 return new modelCategoria(categoriaAuxiliar,lm);
             }*/
 
+    }
+    public modelCliente showClient(int c){
+        entityCliente auxClient = rpc.findById(c);
+        if(auxClient==null){
+           throw new ClienteNoEncontrado("Cliente invalid " + " ID "+c);
+        }else{
+            return new modelCliente(rpc.findById(c), converter.direcciones(rpc.findById(c).getDirecciones()));
+        }
+        
     }
 
     @Override
